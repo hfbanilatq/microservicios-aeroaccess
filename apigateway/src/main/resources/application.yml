@@ -4,6 +4,7 @@ spring:
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -15,7 +16,7 @@ spring:
               - DELETE
             allowCredentials: false
       routes:
-        - id: authentication-microservice
+        - id: authentication
           uri: lb://AUTHENTICATION
           predicates:
             - Path=/aeroaccess/auth/**
@@ -39,7 +40,7 @@ eureka:
     instance-id: ${spring.application.name}:${random.uuid}
   client:
     serviceUrl:
-      defaultZone: 'http://eureka-service:8761/eureka/'
+      defaultZone: 'http://localhost:8761/eureka/'
 
 server:
   port: 8888

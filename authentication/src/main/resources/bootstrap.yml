@@ -3,8 +3,8 @@ spring:
     name: authentication
   cloud:
     config:
-      uri: http://config-server-service:8888
-      profile: kubernetes
+      uri: http://localhost:8888
+      profile: dev
   datasource:
     username: root
     password: admin
@@ -28,5 +28,13 @@ management:
         include: '*'
 
 jwt:
-  secret: secret
+  secret: 3FgvbB4/xGCmghQV/zkTGMxWePsrvITGmq8BRROT2ms4xRfnLuPZdtf6RQSigPBDH7rdQpsDTI9g9UwuM/ZDBg==
   expiration: 1680
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/ # URL de tu servidor Eureka.
+  instance:
+    instance-id: ${spring.application.name}:${random.value} # ID de instancia personalizado.
+    hostname: localhost

@@ -13,6 +13,4 @@ public class LoginUserDto {
     private String username;
     @NotBlank
     private String password;
-    @NotBlank
-    private String customer;
 }

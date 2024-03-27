@@ -6,5 +6,5 @@ WORKDIR /build/
 RUN mvn clean package -DskipTests
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY --from=MAVEN_BUILD /build/target/apigateway-0.0.1.jar /app/
-CMD ["java", "-jar", "apigateway-0.0.1.jar"]
+COPY --from=MAVEN_BUILD /build/target/authentication-0.0.1.jar /app/
+ENTRYPOINT ["java", "-jar", "authentication-0.0.1.jar"]

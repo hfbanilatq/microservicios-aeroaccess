@@ -25,10 +25,6 @@ public class JwtProvider {
 
     private String errorMessage;
 
-    @PostConstruct
-    protected void init() {
-        secret = Base64.getEncoder().encodeToString(secret.getBytes());
-    }
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -40,6 +36,7 @@ public class JwtProvider {
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
         List<String> roles = authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         User optionalUser = this.userService.getByUserName(user.getUsername()).orElse(null);
+        assert optionalUser != null;
         return Jwts.builder()
                 .setSubject(optionalUser.getUsername())
                 .claim("id", optionalUser.getId())

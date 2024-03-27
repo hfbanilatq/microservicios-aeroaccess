@@ -6,5 +6,5 @@ WORKDIR /build/
 RUN mvn clean package -DskipTests
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY --from=MAVEN_BUILD /build/target/apigateway-0.0.1.jar /app/
-CMD ["java", "-jar", "apigateway-0.0.1.jar"]
+COPY --from=MAVEN_BUILD /build/target/eurekaserver-0.0.1.jar /app/
+ENTRYPOINT ["java", "-jar", "eurekaserver-0.0.1.jar"]
